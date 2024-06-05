@@ -1,0 +1,12 @@
+.footer {
+  border-top: 1px solid #a3a3a3;
+
+}
+
+.item-link {
+  color: #000;
+}
+
+.item-link:hover {
+  color: #a3a3a3;
+}

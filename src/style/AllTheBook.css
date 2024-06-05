@@ -1,0 +1,15 @@
+.card-item {
+  width: 200px;
+  height: 550px;
+  margin-bottom: 20px;
+  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.card-item:hover {
+  cursor: pointer;
+}
+
+.card-item img {
+  width: 100%;
+  height: 300px;
+}
