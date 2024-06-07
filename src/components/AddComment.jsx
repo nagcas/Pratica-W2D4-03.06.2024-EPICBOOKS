@@ -10,31 +10,40 @@ function AddComment({ token, elementId, setAdd, add }) {
   const url = 'https://striveschool-api.herokuapp.com/api/comments';
   
   const [themeCtx, setThemeCtx] = useContext(ThemeContext);
-
   const [message, setMessage] = useState(false);
+  const [error, setError] = useState('');
+
 
   const [FormDataComment, setFormDataComment] = useState({
     comment: '',
     rate: 0,
-    elementId: elementId,
+    elementId: elementId
   });
 
   let handleCommentChange = (e) => {
     setFormDataComment({
       ...FormDataComment,
-      comment: e.target.value
+      comment: e.target.value,
+      elementId: elementId
     })
   }
 
   let handleRateChange = (e) => {
     setFormDataComment({
       ...FormDataComment,
-      rate: e.target.value
+      rate: e.target.value,
+      elementId: elementId
     })
   }
  
   let sendComment = () => {
-    console.log(FormDataComment)
+    console.log(FormDataComment);
+
+    if (FormDataComment.comment.trim() === '') {
+      setError('Comment is required.');
+      return;
+    }
+
     fetch(url, {
       method: 'POST',
       body: JSON.stringify(FormDataComment),
@@ -66,7 +75,7 @@ function AddComment({ token, elementId, setAdd, add }) {
                 type='text' 
                 placeholder='Comment' 
                 name='comment'
-                required
+                value=''
                 onChange={handleCommentChange}
               />
             </Form.Group>
@@ -74,7 +83,7 @@ function AddComment({ token, elementId, setAdd, add }) {
               className='mb-3' 
               aria-label='select-rate' 
               name='rate'
-              required
+              value=''
               onChange={handleRateChange}
             >
               <option>Select Rate</option>
@@ -86,10 +95,11 @@ function AddComment({ token, elementId, setAdd, add }) {
             </Form.Select>
             <Button variant='primary' onClick={sendComment}>Add Comment</Button>
           </Form>
+          {error && <Alert className='mt-4' variant='danger' onClose={() => setError('')} dismissible>{error}</Alert>}
+          {message && <Alert className='mt-4' variant='success' onClose={() => setMessage(false)} dismissible>Comment sent successfully!</Alert>}
           </Accordion.Body>
         </Accordion.Item>
       </Accordion>
-      {message && <Alert variant='success' onClose={() => setMessage(false)} dismissible>Comment sent successfully</Alert>}
     </Container>
   );
 }

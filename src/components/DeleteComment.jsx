@@ -28,7 +28,7 @@ function DeleteComment({ comment, setAdd, add }) {
   return (
     <>
       <Button variant='outline-danger' className='float-end' onClick={() => removeComment(comment)}><i className="bi bi-trash3"></i></Button>
-      {message && <Alert variant='success' onClose={() => setMessage(!message)} dismissible>Comment delete successfully</Alert>}
+      {message && <Alert variant='success' onClose={() => setMessage(!message)} dismissible>Comment delete successfully!</Alert>}
     </>
   )
 }
