@@ -1,15 +1,17 @@
-import { Form } from 'react-bootstrap';
+import { Col, Form } from 'react-bootstrap';
 
 function SearchBook({ search, handleSearch }) {
   return (
-    <Form.Control
-      className='mb-4'
-      placeholder='Search book'
-      type='text'
-      name='search'
-      value={search}
-      onChange={(e) => handleSearch(e.target.value)}
-    />
+    <Col>
+      <Form.Group className='m-3'>
+        <Form.Control 
+          type='search'
+          placeholder='Search book...'
+          value={search}
+          onChange={handleSearch}
+        />
+      </Form.Group> 
+    </Col>
   );
 }
 

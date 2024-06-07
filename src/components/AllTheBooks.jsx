@@ -5,17 +5,17 @@ import SingleBook from './SingleBook';
 import { useState } from 'react';
 import SearchBook from './SearchBook';
 
-function AllTheBooks({ books }) {
+function AllTheBooks({ books, search }) {
 
-  const [search, setSearch] = useState('');
+  // const [search, setSearch] = useState('');
 
-  const handleSearch = (e) => {
-    setSearch(e);
-  } 
+  // const handleSearch = (e) => {
+  //   setSearch(e.target.value);
+  // }
   
   return (
     <>
-      <SearchBook search={search} handleSearch={handleSearch} />
+      {/* <SearchBook search={search} handleSearch={handleSearch} /> */}
       <Row>
         {books.filter((book) => book.title.toLowerCase().includes(search))
           .map((book) => <SingleBook key={book.asin} book={book} />)}

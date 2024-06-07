@@ -1,11 +1,15 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import '../style/AddComment.css'
 
 import { Container, Accordion, Form, Button, Alert } from 'react-bootstrap';
+import { ThemeContext } from '../modules/Contexts';
 
-const url = 'https://striveschool-api.herokuapp.com/api/comments';
 
-function AddComment({ token, elementId }) {
+function AddComment({ token, elementId, setAdd, add }) {
+  
+  const url = 'https://striveschool-api.herokuapp.com/api/comments';
+  
+  const [themeCtx, setThemeCtx] = useContext(ThemeContext);
 
   const [message, setMessage] = useState(false);
 
@@ -44,12 +48,13 @@ function AddComment({ token, elementId }) {
         console.log(data);
         setMessage(true);
         setFormDataComment({comment: '', rate: 0, elementId: elementId});
+        setAdd(!add);
       })
       .catch((error) => console.error(error))
   }
 
   return (
-    <Container className='comment-add p-0'>
+    <Container className='comment-add p-0' data-bs-theme={themeCtx}>
       <Accordion defaultActiveKey='1'>
         <Accordion.Item eventKey='0'>
           <Accordion.Header>Add Comment</Accordion.Header>
@@ -60,14 +65,16 @@ function AddComment({ token, elementId }) {
               <Form.Control 
                 type='text' 
                 placeholder='Comment' 
-                name='comment' 
+                name='comment'
+                required
                 onChange={handleCommentChange}
               />
             </Form.Group>
             <Form.Select 
               className='mb-3' 
               aria-label='select-rate' 
-              name='rate' 
+              name='rate'
+              required
               onChange={handleRateChange}
             >
               <option>Select Rate</option>
@@ -82,7 +89,7 @@ function AddComment({ token, elementId }) {
           </Accordion.Body>
         </Accordion.Item>
       </Accordion>
-    {message && <Alert variant='success' onClose={() => setMessage(false)} dismissible>Comment sent successfully</Alert>}
+      {message && <Alert variant='success' onClose={() => setMessage(false)} dismissible>Comment sent successfully</Alert>}
     </Container>
   );
 }
