@@ -3,17 +3,24 @@ import { Button, Alert, Modal, Form } from 'react-bootstrap';
 import { ThemeContext } from '../modules/Contexts';
 
 function UpdateComment({ comment, setAdd, add }) {
+  // URL per le richieste di aggiornamento dei commenti e token per l'autenticazione
   const url = 'https://striveschool-api.herokuapp.com/api/comments/';
   const token = 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjYwMTVmNTA3ZjBkMTAwMTUzZDhjYzUiLCJpYXQiOjE3MTc1NzMxMDksImV4cCI6MTcxODc4MjcwOX0.3cI16-CxRBTWmHyqNW77xPog-2OZ3eDpJI8L6W8hSWQ';
 
+  // Stati locali per gestire lo stato dell'aggiornamento e la visibilità del modale
   const [isUpdate, setIsUpdate] = useState(false);
   const [show, setShow] = useState(false);
+  // Stato locale per memorizzare i dati del commento da modificare
   const [formDataComment, setFormDataComment] = useState({ comment: comment.comment, rate: comment.rate });
+  // Contesto per il tema
   const [themeCtx, setThemeCtx] = useContext(ThemeContext);
 
+  // Funzione per mostrare il modale
   const handleShow = () => setShow(true);
+  // Funzione per chiudere il modale
   const handleClose = () => setShow(false);
 
+  // Funzione per gestire la modifica del campo commento
   const handleCommentChange = (e) => {
     setFormDataComment({
       ...formDataComment,
@@ -21,6 +28,7 @@ function UpdateComment({ comment, setAdd, add }) {
     });
   };
 
+  // Funzione per gestire la modifica del campo rate
   const handleRateChange = (e) => {
     setFormDataComment({
       ...formDataComment,
@@ -28,6 +36,7 @@ function UpdateComment({ comment, setAdd, add }) {
     });
   };
 
+  // Funzione per inviare la richiesta di aggiornamento del commento
   const handleUpdateComment = () => {
     fetch(url + comment._id, {
       method: 'PUT',
@@ -40,21 +49,26 @@ function UpdateComment({ comment, setAdd, add }) {
       .then((response) => response.json())
       .then((data) => {
         console.log(data);
-        setIsUpdate(true);
-        setAdd(!add);
-        handleClose();
+        setIsUpdate(true); // Imposta lo stato di aggiornamento a true per mostrare il messaggio di successo
+        setAdd(!add); // Aggiorna lo stato per rifare il fetch dei commenti
+        handleClose(); // Chiude il modale
       })
       .catch((error) => console.error(error));
   };
 
+  // Render del componente
   return (
     <>
+      {/* Bottone per aprire il modale di aggiornamento del commento */}
       <Button variant='outline-warning' className='float-end' onClick={handleShow}><i className="bi bi-arrow-repeat"></i></Button>
+      {/* Modale per l'aggiornamento del commento */}
       <Modal show={show} onHide={handleClose} animation={false} bg={themeCtx} data-bs-theme={themeCtx}>
         <Modal.Header closeButton>
+          {/* Titolo del modale */}
           <Modal.Title className={themeCtx === 'dark' ? 'text-white' : 'text-dark'}>Modify comment</Modal.Title>
         </Modal.Header>
         <Modal.Body>
+          {/* Form per inserire il nuovo commento e il nuovo rate */}
           <Form>
             <Form.Group className='mb-3' controlId='formComment'>
               <Form.Label className={themeCtx === 'dark' ? 'text-white' : 'text-dark'}>Comment</Form.Label>
@@ -75,6 +89,7 @@ function UpdateComment({ comment, setAdd, add }) {
               onChange={handleRateChange}
             >
               <option>Select Rate</option>
+              {/* Opzioni per il rate */}
               <option value='1'>1</option>
               <option value='2'>2</option>
               <option value='3'>3</option>
@@ -84,18 +99,22 @@ function UpdateComment({ comment, setAdd, add }) {
           </Form>
         </Modal.Body>
         <Modal.Footer>
+          {/* Pulsante per chiudere il modale */}
           <Button variant='secondary' onClick={handleClose}>
             Close
           </Button>
+          {/* Pulsante per salvare le modifiche al commento */}
           <Button variant='primary' onClick={handleUpdateComment}>
             Save Changes
           </Button>
         </Modal.Footer>
       </Modal>
-			{isUpdate && <Alert variant='success' onClose={() => setIsUpdate(!isUpdate)} dismissible>Comment updated successfully</Alert>}
+      {/* Messaggio di successo dopo l'aggiornamento del commento */}
+      {isUpdate && <Alert variant='success' onClose={() => setIsUpdate(!isUpdate)} dismissible>Comment updated successfully</Alert>}
     </>
   );
 }
 
 export default UpdateComment;
+
 
