@@ -2,12 +2,13 @@
 import '../style/AllTheBook.css';
 
 // Importazione di componenti da React-Bootstrap e dei componenti locali
-import { Row, Col } from 'react-bootstrap';
+import { Container, Row, Col } from 'react-bootstrap';
 import SingleBook from './SingleBook';
 import CommentArea from './CommentArea';
 import { useState } from 'react';
 // Importazione del componente SearchBook (attualmente commentato)
 // import SearchBook from './SearchBook';
+
 
 function AllTheBooks({ books, search }) {
 
@@ -21,7 +22,7 @@ function AllTheBooks({ books, search }) {
   // }
   
   return (
-    <>
+    <Container className='content-books'>
       <Row>
         <Col md={9}>
           {/* Componente di ricerca (attualmente commentato) */}
@@ -29,12 +30,12 @@ function AllTheBooks({ books, search }) {
           <Row>
             {/* Filtro e mappatura dei libri in base al titolo e alla ricerca */}
             {books.filter((book) => book.title.toLowerCase().includes(search))
-              .map((book) => 
-              <SingleBook 
-                key={book.asin} 
-                book={book} 
-                selected={selected} 
-                setSelected={setSelected} 
+              .map((book) =>
+              <SingleBook
+                key={book.asin}
+                book={book}
+                selected={selected}
+                setSelected={setSelected}
               />)
             }
           </Row>
@@ -44,7 +45,7 @@ function AllTheBooks({ books, search }) {
           <CommentArea asin={selected} />
         </Col>
       </Row>
-    </>
+    </Container>
   );
 }
 

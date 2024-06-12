@@ -1,5 +1,7 @@
+import '../style/Updatecomment.css';
+
 import { useContext, useEffect, useState } from 'react';
-import { Button, Alert, Modal, Form } from 'react-bootstrap';
+import { Container, Button, Alert, Modal, Form } from 'react-bootstrap';
 import { ThemeContext } from '../modules/Contexts';
 
 function UpdateComment({ comment, setAdd, add }) {
@@ -58,9 +60,13 @@ function UpdateComment({ comment, setAdd, add }) {
 
   // Render del componente
   return (
-    <>
+    <Container>
       {/* Bottone per aprire il modale di aggiornamento del commento */}
-      <Button variant='outline-warning' className='float-end' onClick={handleShow}><i className="bi bi-arrow-repeat"></i></Button>
+      <Button variant='outline-warning' className='float-end' onClick={handleShow}><i className="bi bi-pencil-square"></i></Button>
+      <div className='content-update'>
+        {/* Messaggio di successo dopo l'aggiornamento del commento */}
+        {isUpdate && <Alert variant='success' onClose={() => setIsUpdate(!isUpdate)} dismissible>Comment updated successfully</Alert>}
+      </div>
       {/* Modale per l'aggiornamento del commento */}
       <Modal show={show} onHide={handleClose} animation={false} bg={themeCtx} data-bs-theme={themeCtx}>
         <Modal.Header closeButton>
@@ -109,9 +115,7 @@ function UpdateComment({ comment, setAdd, add }) {
           </Button>
         </Modal.Footer>
       </Modal>
-      {/* Messaggio di successo dopo l'aggiornamento del commento */}
-      {isUpdate && <Alert variant='success' onClose={() => setIsUpdate(!isUpdate)} dismissible>Comment updated successfully</Alert>}
-    </>
+    </Container>
   );
 }
 

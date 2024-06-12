@@ -24,7 +24,7 @@ function CommentList({ comments, setAdd, add }) {
             <Accordion.Body>
               <ListGroup>
                 {/* Mappatura dei commenti per la visualizzazione */}
-                {comments.map((comment) => (
+                {comments.length > 0 ? comments.map((comment) => (
                   <ListGroup.Item key={comment._id} className='d-flex justify-content-between align-items-center content-item'>
                     {comment.comment} - rate: {comment.rate}
                     <div className='d-flex gap-2'>
@@ -33,7 +33,7 @@ function CommentList({ comments, setAdd, add }) {
                       <UpdateComment comment={comment} setAdd={setAdd} add={add} />
                     </div>
                   </ListGroup.Item>
-                ))}
+                )) : <p className='text-center'>no comments present</p>}
               </ListGroup>
             </Accordion.Body>
           </Accordion.Item>

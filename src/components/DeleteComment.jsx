@@ -1,6 +1,6 @@
 // Importazione dei hook e dei componenti necessari da React e React-Bootstrap
 import { useState } from 'react';
-import { Button, Alert } from 'react-bootstrap';
+import { Container, Button, Alert } from 'react-bootstrap';
 
 // Definizione del componente DeleteComment
 function DeleteComment({ comment, setAdd, add }) {
@@ -31,7 +31,7 @@ function DeleteComment({ comment, setAdd, add }) {
 
   // Render del componente
   return (
-    <>
+    <Container>
       <Button variant='outline-danger' className='float-end' onClick={() => removeComment(comment)}>
         <i className="bi bi-trash3"></i>
       </Button>
@@ -40,7 +40,7 @@ function DeleteComment({ comment, setAdd, add }) {
           Comment deleted successfully!
         </Alert>
       )}
-    </>
+    </Container>
   );
 }
 

@@ -3,6 +3,8 @@ import './App.css';
 // Importa lo stile CSS di Bootstrap
 import 'bootstrap/dist/css/bootstrap.min.css'; 
 
+import { BrowserRouter, Router, Routes, Route } from 'react-router-dom';
+
 // Importa i componenti Container e Button da React Bootstrap
 import { Container, Button } from 'react-bootstrap'; 
 // Importa il componente di navigazione personalizzato
@@ -24,7 +26,12 @@ import romance from './books/romance.json';
 import scifi from './books/scifi.json'; 
 
 // Importa il componente che mostra tutti i libri
-import AllTheBooks from './components/AllTheBooks'; 
+import AllTheBooks from './components/AllTheBooks';
+import About from './components/About'; 
+import Browse from './components/Browse';
+import BookDetail from './components/BookDetail';
+import NotFound from './components/NotFound';
+
 // Importa il hook useState da React
 import { useState } from 'react'; 
 
@@ -44,38 +51,34 @@ function App() {
   const [theme, setTheme] = useState('ligth'); 
 
   return (
-    <>
+    <BrowserRouter basename='/'>
       {/* Fornisce il contesto del tema all'applicazione */}
       <ThemeContext.Provider value={[theme, setTheme]}> 
+        {/* Mostra il componente di benvenuto */}
+        <Welcome /> 
         {/* Mostra la barra di navigazione personalizzata */}
-        <MyNav search={search} handleSearch={handleSearch} /> 
-        <Container>
-          {/* Mostra il componente di benvenuto */}
-          <Welcome /> 
-          {/* Contenitore per i pulsanti di categoria */}
-          <Container className='content-button'> 
-            {/* Pulsante per la categoria Fantasy */}
-            <Button variant={theme === 'dark' ? 'dark' : 'success'} onClick={() => setCategoria('fantasy')}>Fantasy</Button> 
-            {/* Pulsante per la categoria Storia */}
-            <Button variant={theme === 'dark' ? 'dark' : 'success'} onClick={() => setCategoria('history')}>History</Button>
-            {/* Pulsante per la categoria Horror */} 
-            <Button variant={theme === 'dark' ? 'dark' : 'success'} onClick={() => setCategoria('horror')}>Horror</Button> 
-            {/* Pulsante per la categoria Romance */}
-            <Button variant={theme === 'dark' ? 'dark' : 'success'} onClick={() => setCategoria('romance')}>Romance</Button> 
-            {/* Pulsante per la categoria Fantascienza */}  
-            <Button variant={theme === 'dark' ? 'dark' : 'success'} onClick={() => setCategoria('scifi')}>Scifi</Button> 
-          </Container>
-          {/* Mostri il componente AllTheBooks basato sulla categoria selezionata e sulla ricerca */}
-          {categoria === 'fantasy' && <AllTheBooks books={fantasy} search={search} />}
-          {categoria === 'history' && <AllTheBooks books={history} search={search} />}
-          {categoria === 'horror' && <AllTheBooks books={horror} search={search} />}
-          {categoria === 'romance' && <AllTheBooks books={romance} search={search} />}
-          {categoria === 'scifi' && <AllTheBooks books={scifi} search={search} />}
-        </Container>
+        <MyNav search={search} handleSearch={handleSearch} />
+
+        <Routes>
+          <Route index element={ <AllTheBooks books={fantasy} search={search} />} />
+          <Route path='/about' element={ <About />} />
+          <Route path='/browse' element={ <Browse />} />
+          
+          <Route path='/history' element={ <AllTheBooks books={history} search={search} />} />
+          <Route path='/horror' element={ <AllTheBooks books={horror} search={search} />} />
+          <Route path='/romance' element={ <AllTheBooks books={romance} search={search} />} />
+          <Route path='/scifi' element={ <AllTheBooks books={scifi} search={search} />} />
+        
+          <Route path='/book-detail/:id/:category' element={ <BookDetail />} />
+
+          <Route path='*' element={ <NotFound />} />
+        </Routes>
+
+      
         {/* Mostra il footer di pagina */}
         <MyFooter /> 
       </ThemeContext.Provider>
-    </>
+    </BrowserRouter>
   )
 }
 

@@ -34,20 +34,20 @@ function CommentArea({ asin }) {
     .then((data) => {
       console.log(data);
       setComments(data);
-      setIsEnableSpinner(false);
     })
     .catch((error) => {
-      console.error('Errore nel caricamento...', error);
+      console.error('Error loading...', error);
       setIsError(true);
       setIsEnableSpinner(false);
     })
+    .finally(() => setIsEnableSpinner(false))
   }, [asin, add]);
 
   // Render del componente
   return (
     <>
       {isEnableSpinner && <div className='text-center'><Spinner animation='grow' /></div>}
-      {isError && <div className='text-center'><Alert variant='danger'>Errore nel caricamento...</Alert></div>}
+      {isError && <div className='text-center'><Alert variant='danger'>Error loading...</Alert></div>}
       <CommentList comments={comments} setAdd={setAdd} add={add} />
       <AddComment token={token} elementId={asin} setAdd={setAdd} add={add} />
     </>
