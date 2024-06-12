@@ -6,8 +6,6 @@ import { ThemeContext } from '../modules/Contexts';
 
 import { useNavigate } from 'react-router-dom';
 
-// Importazione del componente CommentArea e del contesto per il tema
-import CommentArea from './CommentArea';
 
 // Definizione del componente SingleBook
 function SingleBook({ book, selected, setSelected }) {
@@ -46,4 +44,5 @@ function SingleBook({ book, selected, setSelected }) {
   );
 }
 
+// Esportazione del componente SingleBook
 export default SingleBook;

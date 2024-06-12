@@ -8,4 +8,5 @@ function Browse() {
   );
 }
 
+// Esportazione del componente Browse
 export default Browse;

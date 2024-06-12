@@ -18,4 +18,5 @@ function SearchBook({ search, handleSearch }) {
   );
 }
 
+// Esportazione del componente SearchBook
 export default SearchBook;

@@ -3,10 +3,9 @@ import '../style/AllTheBook.css';
 
 // Importazione di componenti da React-Bootstrap e dei componenti locali
 import { Container, Row, Col } from 'react-bootstrap';
-
-//import CommentArea from './CommentArea';
 import { useState } from 'react';
 
+// Import SingleBook
 import SingleBook from './SingleBook';
 
 function AllTheBooks({ books, search }) {
@@ -42,4 +41,5 @@ function AllTheBooks({ books, search }) {
   );
 }
 
+// Esportazione del componente AllTheBooks
 export default AllTheBooks;

@@ -19,4 +19,5 @@ function Welcome() {
   );
 }
 
+// Esportazione del componente Welcome
 export default Welcome;

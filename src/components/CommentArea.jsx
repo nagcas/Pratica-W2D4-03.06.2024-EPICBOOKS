@@ -1,10 +1,6 @@
 // Importazione dei hook di React e dei componenti necessari
 import { useEffect, useState } from 'react';
-
 import { Spinner, Alert } from 'react-bootstrap';
-
-import { ThemeContext } from '../modules/Contexts';
-
 import CommentList from './CommentList';
 import AddComment from './AddComment';
 
@@ -15,8 +11,7 @@ function CommentArea({ asin }) {
   const url = 'https://striveschool-api.herokuapp.com/api/books/';
   const token = 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjYwMTVmNTA3ZjBkMTAwMTUzZDhjYzUiLCJpYXQiOjE3MTc1NzMxMDksImV4cCI6MTcxODc4MjcwOX0.3cI16-CxRBTWmHyqNW77xPog-2OZ3eDpJI8L6W8hSWQ';
   
-  // Uso del contesto per il tema e definizione degli stati locali
-  const [themeCtx, setThemeCtx] = useState(ThemeContext);
+  // Definizione degli stati locali
   const [comments, setComments] = useState([]);
   const [isEnableSpinner, setIsEnableSpinner] = useState(false);
   const [isError, setIsError] = useState(false);
@@ -34,13 +29,13 @@ function CommentArea({ asin }) {
     .then((data) => {
       console.log(data);
       setComments(data);
+      setIsError(false);
     })
     .catch((error) => {
       console.error('Error loading...', error);
       setIsError(true);
-      setIsEnableSpinner(false);
     })
-    .finally(() => setIsEnableSpinner(false))
+    .finally(() => setIsEnableSpinner(false));
   }, [asin, add]);
 
   // Render del componente
@@ -54,4 +49,6 @@ function CommentArea({ asin }) {
   );
 }
 
+// Esportazione del componente CommentArea
 export default CommentArea;
+

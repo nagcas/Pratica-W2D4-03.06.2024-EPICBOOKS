@@ -44,4 +44,5 @@ function DeleteComment({ comment, setAdd, add }) {
   );
 }
 
+// Esportazione del componente DeleteComment
 export default DeleteComment;

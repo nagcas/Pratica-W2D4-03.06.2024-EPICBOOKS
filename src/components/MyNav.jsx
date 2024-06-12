@@ -56,4 +56,5 @@ function MyNav({ search, handleSearch }) {
   );
 }
 
+// Esportazione del componente MyNav
 export default MyNav;

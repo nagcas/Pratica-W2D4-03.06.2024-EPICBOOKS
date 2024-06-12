@@ -41,4 +41,5 @@ function MyFooter() {
   );
 }
 
+// Esportazione del componente MyFooter
 export default MyFooter;

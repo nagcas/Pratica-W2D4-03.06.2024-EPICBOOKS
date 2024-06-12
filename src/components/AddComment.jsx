@@ -1,12 +1,10 @@
 // Importazione del file CSS per lo stile
-import '../style/AddComment.css'
+import '../style/AddComment.css';
 
 // Importazione di hook e componenti necessari da React e React-Bootstrap
 import { useContext, useState } from 'react';
-
 import { Container, Accordion, Form, Button, Alert } from 'react-bootstrap';
 import { ThemeContext } from '../modules/Contexts';
-
 
 // Definizione del componente AddComment
 function AddComment({ token, elementId, setAdd, add }) {
@@ -33,7 +31,7 @@ function AddComment({ token, elementId, setAdd, add }) {
       comment: e.target.value,
       elementId: elementId
     });
-  }
+  };
 
   // Funzione per gestire i cambiamenti nel campo della valutazione
   let handleRateChange = (e) => {
@@ -42,8 +40,8 @@ function AddComment({ token, elementId, setAdd, add }) {
       rate: e.target.value,
       elementId: elementId
     });
-  }
- 
+  };
+
   // Funzione per inviare il commento
   let sendComment = () => {
     console.log(FormDataComment);
@@ -71,7 +69,7 @@ function AddComment({ token, elementId, setAdd, add }) {
       setAdd(!add);
     })
     .catch((error) => console.error(error));
-  }
+  };
 
   // Render del componente
   return (
@@ -116,4 +114,5 @@ function AddComment({ token, elementId, setAdd, add }) {
   );
 }
 
+// Esportazione del componente AddComment
 export default AddComment;

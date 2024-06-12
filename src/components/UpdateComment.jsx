@@ -1,6 +1,7 @@
 // Importazione del file CSS per lo stile
 import '../style/UpdateComment.css';
 
+// Importazione dei componenti da react e react-router-dom
 import { useContext, useState } from 'react';
 import { Container, Button, Alert, Modal, Form } from 'react-bootstrap';
 import { ThemeContext } from '../modules/Contexts';
@@ -120,6 +121,7 @@ function UpdateComment({ comment, setAdd, add }) {
   );
 }
 
+// Esportazione del componente UpdateComment
 export default UpdateComment;
 
 
