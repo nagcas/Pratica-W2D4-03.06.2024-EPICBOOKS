@@ -5,6 +5,7 @@ import '../style/UpdateComment.css';
 import { useContext, useState } from 'react';
 import { Container, Button, Alert, Modal, Form } from 'react-bootstrap';
 import { ThemeContext } from '../modules/Contexts';
+import { PencilSquare } from 'react-bootstrap-icons';
 
 function UpdateComment({ comment, setAdd, add }) {
   // URL per le richieste di aggiornamento dei commenti e token per l'autenticazione
@@ -64,7 +65,7 @@ function UpdateComment({ comment, setAdd, add }) {
   return (
     <Container>
       {/* Bottone per aprire il modale di aggiornamento del commento */}
-      <Button variant='outline-warning' className='float-end' onClick={handleShow}><i className="bi bi-pencil-square"></i></Button>
+      <Button variant='outline-warning' className='float-end' onClick={handleShow}><PencilSquare /></Button>
       
       {/* Messaggio di successo dopo l'aggiornamento del commento */}
       {isUpdate && <Alert className='content-update m-0' variant='success' onClose={() => setIsUpdate(!isUpdate)} dismissible>Updated</Alert>}

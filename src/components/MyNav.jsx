@@ -3,13 +3,14 @@ import '../style/MyNav.css';
 // Importa il foglio di stile principale dell'applicazione
 import '../style/AllTheBook.css';
 
-import { useContext, useState } from 'react';
+import { useContext } from 'react';
 // Importazione del contesto per il tema
 import { ThemeContext } from '../modules/Contexts';
-import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 // Importazione dei componenti necessari da React-Bootstrap e del componente locale
 import { Navbar, Nav, NavDropdown, Container, Button } from 'react-bootstrap';
+import { MoonStarsFill, SunFill } from 'react-bootstrap-icons';
 
 import SearchBook from './SearchBook';
 
@@ -49,7 +50,7 @@ function MyNav({ search, handleSearch }) {
           themeCtx === 'light' ? setThemeCtx('dark') : setThemeCtx('light');
         }}>
           {/* Icona del tema corrente */}
-          {themeCtx === 'dark' ? <i className='bi bi-moon-stars-fill'></i> : <i className='bi bi-sun'></i>} 
+          {themeCtx === 'dark' ? <MoonStarsFill /> : <SunFill />} 
         </Button>
       </Container>
     </Navbar>

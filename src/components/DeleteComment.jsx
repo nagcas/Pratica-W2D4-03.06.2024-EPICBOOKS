@@ -1,6 +1,7 @@
 // Importazione dei hook e dei componenti necessari da React e React-Bootstrap
 import { useState } from 'react';
 import { Container, Button, Alert } from 'react-bootstrap';
+import { Trash3Fill } from 'react-bootstrap-icons';
 
 // Definizione del componente DeleteComment
 function DeleteComment({ comment, setAdd, add }) {
@@ -33,7 +34,7 @@ function DeleteComment({ comment, setAdd, add }) {
   return (
     <Container>
       <Button variant='outline-danger' className='float-end' onClick={() => removeComment(comment)}>
-        <i className="bi bi-trash3"></i>
+      <Trash3Fill />
       </Button>
       {message && (
         <Alert variant='success' onClose={() => setMessage(!message)} dismissible>

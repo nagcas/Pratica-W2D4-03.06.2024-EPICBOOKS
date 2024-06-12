@@ -8,6 +8,7 @@ import { useContext } from 'react';
 
 import DeleteComment from './DeleteComment';
 import UpdateComment from './UpdateComment';
+import { Star, StarFill } from 'react-bootstrap-icons';
 
 // Definizione del componente CommentList
 function CommentList({ comments, setAdd, add }) {
@@ -30,8 +31,9 @@ function CommentList({ comments, setAdd, add }) {
               {/* Mappatura dei commenti per la visualizzazione */}
               {comments.length > 0 ? comments.map((comment) => (
                 <ListGroup.Item key={comment._id} className='d-flex justify-content-between align-items-center content-item'>
-                  {comment.comment} - rate: {comment.rate}
-                  <div className='d-flex gap-2'>
+                  <p>{Array.from({length: comment.rate}).map((rate) => <StarFill color='#f0f329' />)}</p>
+                  <p>{comment.comment}</p>
+                  <div className='d-flex justify-content-end gap-2'>
                     {/* Componenti per eliminare e aggiornare il commento */}
                     <DeleteComment comment={comment} setAdd={setAdd} add={add} />
                     <UpdateComment comment={comment} setAdd={setAdd} add={add} />
