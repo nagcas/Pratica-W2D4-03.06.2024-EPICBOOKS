@@ -3,28 +3,21 @@ import '../style/AllTheBook.css';
 
 // Importazione di componenti da React-Bootstrap e dei componenti locali
 import { Container, Row, Col } from 'react-bootstrap';
-import SingleBook from './SingleBook';
-import CommentArea from './CommentArea';
-import { useState } from 'react';
-// Importazione del componente SearchBook (attualmente commentato)
-// import SearchBook from './SearchBook';
 
+//import CommentArea from './CommentArea';
+import { useState } from 'react';
+
+import SingleBook from './SingleBook';
 
 function AllTheBooks({ books, search }) {
 
   // Stato per tracciare il libro selezionato
   const [selected, setSelected] = useState(false);
-
-  // Stato e gestore per la ricerca (attualmente commentati)
-  // const [search, setSearch] = useState('');
-  // const handleSearch = (e) => {
-  //   setSearch(e.target.value);
-  // }
   
   return (
     <Container className='content-books'>
       <Row>
-        <Col md={9}>
+        <Col md={12}>
           {/* Componente di ricerca (attualmente commentato) */}
           {/* <SearchBook search={search} handleSearch={handleSearch} /> */}
           <Row>
@@ -40,10 +33,10 @@ function AllTheBooks({ books, search }) {
             }
           </Row>
         </Col>
-        <Col md={3}>
-          {/* Area dei commenti per il libro selezionato */}
+        {/* <Col md={3}>
+          Area dei commenti per il libro selezionato
           <CommentArea asin={selected} />
-        </Col>
+        </Col> */}
       </Row>
     </Container>
   );

@@ -2,11 +2,12 @@
 import '../style/CommentList.css';
 
 // Importazione dei componenti da React-Bootstrap e dei componenti locali
-import { Container, ListGroup, Accordion } from 'react-bootstrap';
+import { Container, ListGroup, Accordion, Badge } from 'react-bootstrap';
+import { ThemeContext } from '../modules/Contexts';
+import { useContext } from 'react';
+
 import DeleteComment from './DeleteComment';
 import UpdateComment from './UpdateComment';
-import { useContext } from 'react';
-import { ThemeContext } from '../modules/Contexts';
 
 // Definizione del componente CommentList
 function CommentList({ comments, setAdd, add }) {
@@ -20,7 +21,11 @@ function CommentList({ comments, setAdd, add }) {
       <Container className='comment-list p-0' data-bs-theme={themeCtx}>
         <Accordion defaultActiveKey='1'>
           <Accordion.Item eventKey='0'>
-            <Accordion.Header>Comment List - {comments.length}</Accordion.Header>
+            <Accordion.Header>Comment List 
+              <Badge bg="warning" pil className='m-2'>
+                {comments.length}
+              </Badge>
+            </Accordion.Header>
             <Accordion.Body>
               <ListGroup>
                 {/* Mappatura dei commenti per la visualizzazione */}

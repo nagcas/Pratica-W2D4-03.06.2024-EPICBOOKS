@@ -1,8 +1,11 @@
+// Importazione del file CSS per lo stile
 import '../style/BookDetail.css';
 
 import { Container, Row, Col, Image } from "react-bootstrap";
 
 import { Link, useParams } from 'react-router-dom';
+
+import CommentArea from './CommentArea';
 
 // Importa il file JSON contenente libri fantasy
 import fantasy from '../books/fantasy.json'; 
@@ -15,9 +18,10 @@ import romance from '../books/romance.json';
 // Importa il file JSON contenente libri di fantascienza
 import scifi from '../books/scifi.json'; 
 
+
 function BookDetail() {
 
-  const { id, category } = useParams();
+  const { asin, category } = useParams();
 
   const categories = {
     fantasy: fantasy,
@@ -27,30 +31,31 @@ function BookDetail() {
     scifi: scifi
   };
 
-  console.log(categories[category]);
+  // console.log(categories[category]);
 
   const books = categories[category] || [];
-  
-  return (
-    <Container>
-      {books.filter((book) => book.asin.includes(id))
-        .map((book) =>
-          <Container key={book.asin}>
-            <Row>
-              <Col className="content-detail">
-                <Image src={`${book.img}`} />
-                <div>
-                  <h3>Title: <span className='title'>{book.title}</span></h3>
-                  <p>Category: <span className='category'>{book.category}</span></p>
-                  <p>Price: <span className='price'>{book.price}</span></p>
-                  <Link to='/' className='nav-link btn-back'>Back to Books</Link>
-                </div>
-              </Col>
-            </Row>
-          </Container>
-        )
-      }
-    </Container>
+  const book = books.find((b) => b.asin.includes(asin));
+
+  return (      
+    <Container key={book.asin}>
+      <Row>
+        <Col className="d-flex content-detail">
+          <Image src={`${book.img}`} />
+          <div>
+            <h3>Title: <span className='title'>{book.title}</span></h3>
+            <p>Category: <span className='category'>{book.category}</span></p>
+            <p>Price: <span className='price'>€ {book.price}</span></p>
+            <Link to={category === 'fantasy' ? '/' : `/${category}`} className='nav-link btn-back'>Back to Books</Link>
+          </div>
+        </Col>
+      </Row>
+      <Row>
+        <Col className='mt-4'>
+          {/* Area dei commenti per il libro selezionato */}
+          <CommentArea asin={asin} />
+        </Col>
+      </Row>
+    </Container>    
   );
 }
 

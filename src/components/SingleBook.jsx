@@ -1,12 +1,13 @@
 // Importazione dei hook di React e dei componenti necessari da React-Bootstrap
-import { useContext, useState } from 'react';
+import { useContext } from 'react';
 import { Col, Card, Button } from 'react-bootstrap';
 
-// Importazione del componente CommentArea e del contesto per il tema
-import CommentArea from './CommentArea';
 import { ThemeContext } from '../modules/Contexts';
 
 import { useNavigate } from 'react-router-dom';
+
+// Importazione del componente CommentArea e del contesto per il tema
+import CommentArea from './CommentArea';
 
 // Definizione del componente SingleBook
 function SingleBook({ book, selected, setSelected }) {
@@ -34,7 +35,10 @@ function SingleBook({ book, selected, setSelected }) {
           <Card.Text>Category: {book.category}</Card.Text>
           <Card.Text>Price: € {book.price}</Card.Text>
         </Card.Body>
-        <Button className='btn-success w-75 m-auto mb-4' onClick={() => navigate(`/book-detail/${book.asin}/${book.category}`)}>Book Detail</Button>
+        <Button 
+          className='btn-success w-75 m-auto mb-4'
+          onClick={() => navigate(`/book-detail/${book.asin}/${book.category}`)}>Book Detail
+        </Button>
       </Card>
       {/* Visualizza l'area commenti solo se il libro è selezionato */}
       {/* {selected && <CommentArea asin={book.asin} />} */}

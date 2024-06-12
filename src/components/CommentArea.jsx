@@ -1,12 +1,12 @@
 // Importazione dei hook di React e dei componenti necessari
 import { useEffect, useState } from 'react';
 
-import CommentList from './CommentList';
-import AddComment from './AddComment';
-
 import { Spinner, Alert } from 'react-bootstrap';
 
 import { ThemeContext } from '../modules/Contexts';
+
+import CommentList from './CommentList';
+import AddComment from './AddComment';
 
 // Definizione del componente CommentArea
 function CommentArea({ asin }) {

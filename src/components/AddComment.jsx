@@ -1,9 +1,12 @@
+// Importazione del file CSS per lo stile
+import '../style/AddComment.css'
+
 // Importazione di hook e componenti necessari da React e React-Bootstrap
 import { useContext, useState } from 'react';
-import '../style/AddComment.css'
 
 import { Container, Accordion, Form, Button, Alert } from 'react-bootstrap';
 import { ThemeContext } from '../modules/Contexts';
+
 
 // Definizione del componente AddComment
 function AddComment({ token, elementId, setAdd, add }) {

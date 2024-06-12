@@ -3,6 +3,12 @@ import './App.css';
 // Importa lo stile CSS di Bootstrap
 import 'bootstrap/dist/css/bootstrap.min.css'; 
 
+// Importa il hook useState da React
+import { useState } from 'react'; 
+
+// Importa il contesto del tema dall'applicazione
+import { ThemeContext } from './modules/Contexts'; 
+
 import { BrowserRouter, Router, Routes, Route } from 'react-router-dom';
 
 // Importa i componenti Container e Button da React Bootstrap
@@ -32,11 +38,7 @@ import Browse from './components/Browse';
 import BookDetail from './components/BookDetail';
 import NotFound from './components/NotFound';
 
-// Importa il hook useState da React
-import { useState } from 'react'; 
 
-// Importa il contesto del tema dall'applicazione
-import { ThemeContext } from './modules/Contexts'; 
 
 function App() {
   // Definisce lo stato della categoria selezionata
@@ -48,7 +50,7 @@ function App() {
     setSearch(e.target.value);
   }
   // Definisce lo stato del tema
-  const [theme, setTheme] = useState('ligth'); 
+  const [theme, setTheme] = useState('light'); 
 
   return (
     <BrowserRouter basename='/'>
@@ -69,12 +71,11 @@ function App() {
           <Route path='/romance' element={ <AllTheBooks books={romance} search={search} />} />
           <Route path='/scifi' element={ <AllTheBooks books={scifi} search={search} />} />
         
-          <Route path='/book-detail/:id/:category' element={ <BookDetail />} />
+          <Route path='/book-detail/:asin/:category' element={ <BookDetail />} />
 
           <Route path='*' element={ <NotFound />} />
         </Routes>
 
-      
         {/* Mostra il footer di pagina */}
         <MyFooter /> 
       </ThemeContext.Provider>

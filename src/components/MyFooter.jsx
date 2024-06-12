@@ -1,9 +1,14 @@
+// Importazione del file CSS per lo stile
+import '../style/MyFooter.css';
+
 // Importazione dei hook di React e dei componenti necessari da React-Bootstrap
 import { useContext } from 'react';
 
 import { Link } from 'react-router-dom';
-import '../style/MyFooter.css'; // Importazione del file CSS per lo stile
-import { ThemeContext } from '../modules/Contexts'; // Importazione del contesto per il tema
+
+// Importazione del contesto per il tema
+import { ThemeContext } from '../modules/Contexts';
+
 
 // Definizione del componente MyFooter
 function MyFooter() {
