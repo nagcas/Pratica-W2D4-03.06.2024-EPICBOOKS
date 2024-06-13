@@ -22,25 +22,25 @@ function CommentList({ comments, setAdd, add }) {
       <Accordion defaultActiveKey='1'>
         <Accordion.Item eventKey='0'>
           <Accordion.Header>Comment List 
-            <Badge bg="warning" pil className='m-2'>
+            <Badge bg='warning' className='m-2'>
               {comments.length}
             </Badge>
           </Accordion.Header>
           <Accordion.Body>
-            <ListGroup>
               {/* Mappatura dei commenti per la visualizzazione */}
               {comments.length > 0 ? comments.map((comment) => (
+            <ListGroup key={comment._id}>
                 <ListGroup.Item key={comment._id} className='d-flex justify-content-between align-items-center content-item'>
-                  <p>{Array.from({length: comment.rate}).map((rate) => <StarFill color='#f0f329' />)}</p>
-                  <p>{comment.comment}</p>
+                  <div>{Array.from({length: comment.rate}).map(() => <StarFill color='#f0f329' />)}</div>
+                  <div>{comment.comment}</div>
                   <div className='d-flex justify-content-end gap-2'>
                     {/* Componenti per eliminare e aggiornare il commento */}
                     <DeleteComment comment={comment} setAdd={setAdd} add={add} />
                     <UpdateComment comment={comment} setAdd={setAdd} add={add} />
                   </div>
                 </ListGroup.Item>
-              )) : <p className='text-center'>no comments present</p>}
             </ListGroup>
+              )) : <div className='text-center text-danger fs-5'>no comments present</div>}
           </Accordion.Body>
         </Accordion.Item>
       </Accordion>

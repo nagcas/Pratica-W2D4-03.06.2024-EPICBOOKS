@@ -6,11 +6,14 @@ import { useContext, useState } from 'react';
 import { Container, Accordion, Form, Button, Alert } from 'react-bootstrap';
 import { ThemeContext } from '../modules/Contexts';
 
+// Importazione della configurazione di Axios
+import axios from '../modules/ApiAxios';
+
 // Definizione del componente AddComment
-function AddComment({ token, elementId, setAdd, add }) {
+function AddComment({ elementId, setAdd, add }) {
   
   // URL dell'API per i commenti
-  const url = 'https://striveschool-api.herokuapp.com/api/comments';
+  // const url = 'https://striveschool-api.herokuapp.com/api/comments';
   
   // Uso del contesto per il tema e definizione degli stati locali
   const [themeCtx, setThemeCtx] = useContext(ThemeContext);
@@ -52,23 +55,33 @@ function AddComment({ token, elementId, setAdd, add }) {
       return;
     }
 
-    // Invio del commento tramite fetch
-    fetch(url, {
-      method: 'POST',
-      body: JSON.stringify(FormDataComment),
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: token
-      }
-    })
-    .then((response) => response.json())
-    .then((data) => {
-      console.log(data);
-      setMessage(true);
-      setFormDataComment({ comment: '', rate: 0, elementId: elementId });
-      setAdd(!add);
-    })
-    .catch((error) => console.error(error));
+  // Invio del commento tramite fetch (commentata perchè utilizzo axios)
+  //   fetch(url, {
+  //     method: 'POST',
+  //     body: JSON.stringify(FormDataComment),
+  //     headers: {
+  //       'Content-Type': 'application/json',
+  //       Authorization: token
+  //     }
+  //   })
+  //   .then((response) => response.json())
+  //   .then((data) => {
+  //     console.log(data);
+  //     setMessage(true);
+  //     setFormDataComment({ comment: '', rate: 0, elementId: elementId });
+  //     setAdd(!add);
+  //   })
+  //   .catch((error) => console.error(error));
+  // };
+
+    // Invio del commento attraverso la libreria Axios
+    axios.post('/comments', FormDataComment)
+      .then((response) => {
+        console.log(response.data);
+        setMessage(true);
+        setFormDataComment({ comment: '', rate: 0, elementId: elementId });
+        setAdd(!add);
+      }).catch((error) => console.error(error));
   };
 
   // Render del componente

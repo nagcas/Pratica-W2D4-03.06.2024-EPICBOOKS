@@ -33,10 +33,11 @@ function SingleBook({ book, selected, setSelected }) {
           <Card.Text>Category: {book.category}</Card.Text>
           <Card.Text>Price: € {book.price}</Card.Text>
         </Card.Body>
+        {/* Il Bottone per navigare verso i dettagli del book si visualizza quando viene selezionato evidenziandolo con il bordo rosso */}
         <Button 
-          className='btn-success w-75 m-auto mb-4'
+          className={selected === book.asin ? 'btn-success w-75 m-auto mb-4' : 'd-none'}
           onClick={() => navigate(`/book-detail/${book.asin}/${book.category}`)}>Book Detail
-        </Button>
+        </Button>  
       </Card>
       {/* Visualizza l'area commenti solo se il libro è selezionato */}
       {/* {selected && <CommentArea asin={book.asin} />} */}

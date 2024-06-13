@@ -7,10 +7,13 @@ import { Container, Button, Alert, Modal, Form } from 'react-bootstrap';
 import { ThemeContext } from '../modules/Contexts';
 import { PencilSquare } from 'react-bootstrap-icons';
 
+// Importazione della configurazione di Axios
+import axios from '../modules/ApiAxios';
+
 function UpdateComment({ comment, setAdd, add }) {
   // URL per le richieste di aggiornamento dei commenti e token per l'autenticazione
-  const url = 'https://striveschool-api.herokuapp.com/api/comments/';
-  const token = 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjYwMTVmNTA3ZjBkMTAwMTUzZDhjYzUiLCJpYXQiOjE3MTc1NzMxMDksImV4cCI6MTcxODc4MjcwOX0.3cI16-CxRBTWmHyqNW77xPog-2OZ3eDpJI8L6W8hSWQ';
+  // const url = 'https://striveschool-api.herokuapp.com/api/comments/';
+  // const token = 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjYwMTVmNTA3ZjBkMTAwMTUzZDhjYzUiLCJpYXQiOjE3MTc1NzMxMDksImV4cCI6MTcxODc4MjcwOX0.3cI16-CxRBTWmHyqNW77xPog-2OZ3eDpJI8L6W8hSWQ';
 
   // Stati locali per gestire lo stato dell'aggiornamento e la visibilità del modale
   const [isUpdate, setIsUpdate] = useState(false);
@@ -43,17 +46,28 @@ function UpdateComment({ comment, setAdd, add }) {
 
   // Funzione per inviare la richiesta di aggiornamento del commento
   const handleUpdateComment = () => {
-    fetch(url + comment._id, {
-      method: 'PUT',
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: token,
-      },
-      body: JSON.stringify(formDataComment),
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        console.log(data);
+    // Fetch viene commentata perchè utilizzo la libreria axios
+    // fetch(url + comment._id, {
+    //   method: 'PUT',
+    //   headers: {
+    //     'Content-Type': 'application/json',
+    //     Authorization: token,
+    //   },
+    //   body: JSON.stringify(formDataComment),
+    // })
+    //   .then((response) => response.json())
+    //   .then((data) => {
+    //     console.log(data);
+    //     setIsUpdate(true); // Imposta lo stato di aggiornamento a true per mostrare il messaggio di successo
+    //     setAdd(!add); // Aggiorna lo stato per rifare il fetch dei commenti
+    //     handleClose(); // Chiude il modale
+    //   })
+    //   .catch((error) => console.error(error));
+
+    // Utilizzo axios per effettuare la chiamata put
+    axios.put('/comments/' + comment._id, formDataComment)
+      .then((response) => {
+        console.log(response);
         setIsUpdate(true); // Imposta lo stato di aggiornamento a true per mostrare il messaggio di successo
         setAdd(!add); // Aggiorna lo stato per rifare il fetch dei commenti
         handleClose(); // Chiude il modale
