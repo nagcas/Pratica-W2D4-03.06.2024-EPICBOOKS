@@ -62,14 +62,14 @@ function App() {
         <MyNav search={search} handleSearch={handleSearch} />
 
         <Routes>
-          <Route index element={ <AllTheBooks books={fantasy} search={search} />} />
+          <Route index element={ <AllTheBooks books={fantasy} search={search} category={'fantasy'} />} />
           <Route path='/about' element={ <About />} />
           <Route path='/browse' element={ <Browse />} />
           
-          <Route path='/history' element={ <AllTheBooks books={history} search={search} />} />
-          <Route path='/horror' element={ <AllTheBooks books={horror} search={search} />} />
-          <Route path='/romance' element={ <AllTheBooks books={romance} search={search} />} />
-          <Route path='/scifi' element={ <AllTheBooks books={scifi} search={search} />} />
+          <Route path='/history' element={ <AllTheBooks books={history} search={search} category={'history'} />} />
+          <Route path='/horror' element={ <AllTheBooks books={horror} search={search} category={'horro'} />} />
+          <Route path='/romance' element={ <AllTheBooks books={romance} search={search} category={'romance'} />} />
+          <Route path='/scifi' element={ <AllTheBooks books={scifi} search={search} category={'scifi'} />} />
         
           <Route path='/book-detail/:asin/:category' element={ <BookDetail />} />
 

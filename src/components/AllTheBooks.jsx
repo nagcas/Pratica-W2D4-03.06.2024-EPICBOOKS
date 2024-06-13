@@ -8,7 +8,7 @@ import { useState } from 'react';
 // Import SingleBook
 import SingleBook from './SingleBook';
 
-function AllTheBooks({ books, search }) {
+function AllTheBooks({ books, search, category }) {
 
   // Stato per tracciare il libro selezionato
   const [selected, setSelected] = useState(false);
@@ -17,6 +17,7 @@ function AllTheBooks({ books, search }) {
     <Container className='content-books'>
       <Row>
         <Col md={12}>
+          <h4 className='fs-5 text-secondary mb-3'>Books category: {category}</h4>
           {/* Componente di ricerca (attualmente commentato) */}
           {/* <SearchBook search={search} handleSearch={handleSearch} /> */}
           <Row>
