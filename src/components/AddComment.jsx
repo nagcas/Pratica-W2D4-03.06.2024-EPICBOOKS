@@ -110,11 +110,11 @@ function AddComment({ elementId, setAdd, add }) {
                 onChange={handleRateChange}
               >
                 <option>Select Rate</option>
-                <option value='1'>1</option>
-                <option value='2'>2</option>
-                <option value='3'>3</option>
-                <option value='4'>4</option>
-                <option value='5'>5</option>
+                <option value='1'>⭐</option>
+                <option value='2'>⭐⭐</option>
+                <option value='3'>⭐⭐⭐</option>
+                <option value='4'>⭐⭐⭐⭐</option>
+                <option value='5'>⭐⭐⭐⭐⭐</option>
               </Form.Select>
               <Button variant='primary' onClick={sendComment}>Add Comment</Button>
             </Form>
