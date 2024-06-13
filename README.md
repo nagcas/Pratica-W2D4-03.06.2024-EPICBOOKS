@@ -94,7 +94,7 @@ Assicurati di avere installato Node.js e npm (Node Package Manager) sul tuo comp
 1. **Clona il repository:**
 
    
-   git clone 
+   git clone https://github.com/nagcas/Pratica-W2D4-03.06.2024-EPICBOOKS.git
 
 
 ## Struttura del Progetto
