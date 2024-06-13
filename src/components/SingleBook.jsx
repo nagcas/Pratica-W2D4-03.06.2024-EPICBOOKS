@@ -38,7 +38,7 @@ function SingleBook({ book, selected, setSelected }) {
         </Card.Body>
         {/* Il Bottone per navigare verso i dettagli del book si visualizza quando viene selezionato evidenziandolo con il bordo rosso */}
         <Button 
-          className={selected === book.asin ? 'btn-success w-75 m-auto mb-4' : 'd-none'}
+          className={selected === book.asin ? 'btn-success w-75 m-auto mb-4 btn-animated' : 'd-none'}
           onClick={() => navigate(`/book-detail/${book.asin}/${book.category}`)}>Book Detail
         </Button>  
       </Card>
