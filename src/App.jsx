@@ -67,7 +67,7 @@ function App() {
           <Route path='/browse' element={ <Browse />} />
           
           <Route path='/history' element={ <AllTheBooks books={history} search={search} category={'history'} />} />
-          <Route path='/horror' element={ <AllTheBooks books={horror} search={search} category={'horro'} />} />
+          <Route path='/horror' element={ <AllTheBooks books={horror} search={search} category={'horror'} />} />
           <Route path='/romance' element={ <AllTheBooks books={romance} search={search} category={'romance'} />} />
           <Route path='/scifi' element={ <AllTheBooks books={scifi} search={search} category={'scifi'} />} />
         
