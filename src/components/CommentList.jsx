@@ -47,7 +47,7 @@ function CommentList({ comments, setAdd, add }) {
                     <UpdateComment comment={comment} setAdd={setAdd} add={add} />
                   </div>
                 </ListGroup.Item>
-              )) : <div className='text-center'>no comments present</div>}
+              )) : <div className='text-center text-danger fs-5 text-uppercase'>no comments present</div>}
             </ListGroup>
           </Accordion.Body>
         </Accordion.Item>

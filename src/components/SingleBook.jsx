@@ -1,3 +1,6 @@
+// Importazione del file CSS per lo stile
+import '../style/SingleBook.css';
+
 // Importazione dei hook di React e dei componenti necessari da React-Bootstrap
 import { useContext } from 'react';
 import { Col, Card, Button } from 'react-bootstrap';
@@ -27,9 +30,9 @@ function SingleBook({ book, selected, setSelected }) {
         style={{border: selected === book.asin ? '2px solid red' : 'none' }} 
         onClick={() => setSelected(book.asin)} // Funzione per selezionare il libro
       >
-        <Card.Img variant='top' src={book.img} />
+        <Card.Img variant='top' src={book.img} alt={book.title}/>
         <Card.Body className='p-2'>
-          <Card.Title>{book.title}</Card.Title>
+          <Card.Title className='style-title'>{book.title}</Card.Title>
           <Card.Text>Category: {book.category}</Card.Text>
           <Card.Text>Price: € {book.price}</Card.Text>
         </Card.Body>

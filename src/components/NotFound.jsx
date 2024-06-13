@@ -9,10 +9,12 @@ function NotFound() {
   return (
     <>
       <Container className='page-not-found'>
-        <h1>404</h1>
-        <h3>Error Page</h3>
-        <p>Sorry, This page doesn't exit</p>
-        <Link to='/' className='nav-link btn-back'>Back to Home</Link>
+        <div className='content'>
+          <h1>4🤯4</h1>
+          <h4>Opps! Page not found</h4>
+          <p>Sorry, the page you're looking for doesn't exist.</p>
+          <Link to='/' className='nav-link btn-back'>Back to Home</Link>
+        </div>
       </Container>
     </>
   );
